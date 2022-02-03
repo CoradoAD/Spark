@@ -22,11 +22,10 @@ public class VehicleServiceImpl implements VehicleService {
 
 	@Override
 	public void addVehiculeByUser(Vehicle vehicle, Energy energy, User user) {
-
+		
 		vehicle.setVehicleUser(user);
 		vehicle.setEnergy(energy);
 		vehicleRepo.save(vehicle);
-
 	}
 
 	@Override
