@@ -15,7 +15,8 @@
    "typo_fonct": "Centre-ville",
    "nbre_niv": 2,
    "places_pub": 242,
-   "places_res": 0
+   "places_res": 0,
+   "url_api": "https://data.montpellier3m.fr/sites/default/files/ressources/FR_MTP_ANTI.xml"
  },
  {
    "id": "34172_ARCTRI",
@@ -33,7 +34,8 @@
    "typo_fonct": "Centre-ville",
    "nbre_niv": 5,
    "places_pub": 438,
-   "places_res": 0
+   "places_res": 0,
+   "url_api": "https://data.montpellier3m.fr/sites/default/files/ressources/FR_MTP_ARCT.xml"
  },
  {
    "id": "34172_ARCEAU",
@@ -51,7 +53,8 @@
    "typo_fonct": "Centre-ville",
    "nbre_niv": 1,
    "places_pub": 203,
-   "places_res": 0
+   "places_res": 0,
+   "url_api": "https://data.montpellier3m.fr/sites/default/files/ressources/FR_MTP_ARCE.xml"
  },
  {
    "id": "34057_DEGAUL",
@@ -69,7 +72,8 @@
    "typo_fonct": "Proximité",
    "nbre_niv": 0,
    "places_pub": 0,
-   "places_res": 0
+   "places_res": 0,
+   "url_api": "https://data.montpellier3m.fr/sites/default/files/ressources/FR_MTP_CDGA.xml"
  },
  {
    "id": "34172_CIRCE",
@@ -87,7 +91,8 @@
    "typo_fonct": "Parc relais",
    "nbre_niv": 0,
    "places_pub": 0,
-   "places_res": 0
+   "places_res": 0,
+   "url_api": "https://data.montpellier3m.fr/sites/default/files/ressources/FR_MTP_CIRCE.xml"
  },
  {
    "id": "34172_COMEDI",
@@ -105,7 +110,8 @@
    "typo_fonct": "Centre-ville",
    "nbre_niv": 4,
    "places_pub": 787,
-   "places_res": 20
+   "places_res": 20,
+   "url_api": "https://data.montpellier3m.fr/sites/default/files/ressources/FR_MTP_COME.xml"
  },
  {
    "id": "34172_CORUM",
@@ -123,7 +129,8 @@
    "typo_fonct": "Centre-ville",
    "nbre_niv": 3,
    "places_pub": 473,
-   "places_res": 0
+   "places_res": 0,
+   "url_api": "https://data.montpellier3m.fr/sites/default/files/ressources/FR_MTP_CORU.xml"
  },
  {
    "id": "34172_EUROME",
@@ -141,7 +148,8 @@
    "typo_fonct": "Parc relais",
    "nbre_niv": 0,
    "places_pub": 0,
-   "places_res": 0
+   "places_res": 0,
+   "url_api": "https://data.montpellier3m.fr/sites/default/files/ressources/FR_MTP_MEDC.xml"
  },
  {
    "id": "34172_EUROPA",
@@ -159,7 +167,8 @@
    "typo_fonct": "Centre-ville",
    "nbre_niv": 2,
    "places_pub": 590,
-   "places_res": 0
+   "places_res": 0,
+   "url_api": "https://data.montpellier3m.fr/sites/default/files/ressources/FR_MTP_EURO.xml"
  },
  {
    "id": "34172_FOCHPR",
@@ -177,7 +186,8 @@
    "typo_fonct": "Centre-ville",
    "nbre_niv": 5,
    "places_pub": 385,
-   "places_res": 291
+   "places_res": 291,
+   "url_api": "https://data.montpellier3m.fr/sites/default/files/ressources/FR_MTP_ANTI.xml"
  },
  {
    "id": "34172_GAMBET",
@@ -195,7 +205,8 @@
    "typo_fonct": "Centre-ville",
    "nbre_niv": 1,
    "places_pub": 472,
-   "places_res": 0
+   "places_res": 0,
+   "url_api": "https://data.montpellier3m.fr/sites/default/files/ressources/FR_MTP_FOCH.xml"
  },
  {
    "id": "34172_LORCA",
@@ -213,7 +224,8 @@
    "typo_fonct": "Parc relais",
    "nbre_niv": 0,
    "places_pub": 0,
-   "places_res": 0
+   "places_res": 0,
+   "url_api": "https://data.montpellier3m.fr/sites/default/files/ressources/FR_MTP_GARC.xml"
  },
  {
    "id": "34172_MOSSON",
@@ -231,7 +243,8 @@
    "typo_fonct": "Parc relais",
    "nbre_niv": 0,
    "places_pub": 0,
-   "places_res": 0
+   "places_res": 0,
+   "url_api": "https://data.montpellier3m.fr/sites/default/files/ressources/FR_MTP_MOSS.xml"
  },
  {
    "id": "34057_SABLAS",
@@ -249,7 +262,8 @@
    "typo_fonct": "Proximité",
    "nbre_niv": 0,
    "places_pub": 0,
-   "places_res": 0
+   "places_res": 0,
+   "url_api": "https://data.montpellier3m.fr/sites/default/files/ressources/FR_MTP_SABL.xml"
  },
  {
    "id": "34172_OCCITA",
@@ -267,7 +281,8 @@
    "typo_fonct": "Parc relais",
    "nbre_niv": 0,
    "places_pub": 0,
-   "places_res": 0
+   "places_res": 0,
+   "url_api": "https://data.montpellier3m.fr/sites/default/files/ressources/FR_MTP_OCCI.xml"
  },
  {
    "id": "34172_PITOT",
@@ -285,7 +300,8 @@
    "typo_fonct": "Centre-ville",
    "nbre_niv": 3,
    "places_pub": 553,
-   "places_res": 208
+   "places_res": 208,
+   "url_api": "https://data.montpellier3m.fr/sites/default/files/ressources/FR_MTP_PITO.xml"
  },
  {
    "id": "34172_POLYGO",
@@ -303,7 +319,8 @@
    "typo_fonct": "Centre-ville",
    "nbre_niv": 4,
    "places_pub": 1922,
-   "places_res": 0
+   "places_res": 0,
+   "url_api": "https://data.montpellier3m.fr/sites/default/files/ressources/FR_MTP_POLY.xml"
  },
  {
    "id": "34172_SABINE",
@@ -321,7 +338,8 @@
    "typo_fonct": "Parc relais",
    "nbre_niv": 0,
    "places_pub": 0,
-   "places_res": 0
+   "places_res": 0,
+   "url_api": "https://data.montpellier3m.fr/sites/default/files/ressources/FR_MTP_SABI.xml"
  },
  {
    "id": "34172_SAINTRO",
@@ -339,7 +357,8 @@
    "typo_fonct": "Centre-ville",
    "nbre_niv": 11,
    "places_pub": 711,
-   "places_res": 94
+   "places_res": 94,
+   "url_api": "https://data.montpellier3m.fr/sites/default/files/ressources/FR_MTP_GARE.xml"
  },
  {
    "id": "34270_LESEC",
@@ -357,7 +376,8 @@
    "typo_fonct": "Parc relais",
    "nbre_niv": 0,
    "places_pub": 0,
-   "places_res": 0
+   "places_res": 0,
+   "url_api": "https://data.montpellier3m.fr/sites/default/files/ressources/FR_MTP_SJLC.xml"
  },
  {
    "id": "34172_TRIANG",
@@ -375,7 +395,8 @@
    "typo_fonct": "Centre-ville",
    "nbre_niv": 0,
    "places_pub": 436,
-   "places_res": 158
+   "places_res": 158,
+   "url_api": "https://data.montpellier3m.fr/sites/default/files/ressources/FR_MTP_TRIA.xml"
  },
  {
    "id": "34057_VICCAR",
@@ -393,6 +414,7 @@
    "typo_fonct": "",
    "nbre_niv": 1,
    "places_pub": null,
-   "places_res": null
+   "places_res": null,
+   "url_api": "https://data.montpellier3m.fr/sites/default/files/ressources/FR_MTP_VICA.xml"
  }
 ]

@@ -124,12 +124,6 @@ public class Parking {
 	private double yLat;
 
 	/**
-	 * url vers l'APÏ parking
-	 */
-	@Column(name ="url_api", nullable = false)
-	private String apiUrl;
-
-	/**
 	 * Kind of structure
 	 * ('ouvrage' or 'enclos en surface')
 	 * 'structType' -> 'type_ouvra'
@@ -168,6 +162,12 @@ public class Parking {
 	private int nbPub;
 
 	/**
+	 * url vers l'APÏ parking
+	 */
+	@Column(name ="url_api", nullable = false)
+	private String apiUrl;
+
+	/**
 	 * Number of residential spaces
 	 * 'NbRes' -> 'places_res'
 	 * type : Int - Max lenght 11 && Nullable
@@ -184,6 +184,13 @@ public class Parking {
 	 */
 	@ManyToOne @JoinColumn(name="id_zone")
 	private Zone zone;
+
+	/**
+	 * Personal and 'Favorites' address
+	 */
+	@ManyToOne
+	@JoinColumn(name="id_adresse")
+	private Address parkingAddress;
 
 	public Parking(Parking parking) {
 		this.idParking = parking.idParking;
@@ -350,6 +357,22 @@ public class Parking {
 
 	public void setNbRes(int nbRes) {
 		NbRes = nbRes;
+	}
+
+	public Address getParkingAddress() {
+		return parkingAddress;
+	}
+
+	public void setParkingAddress(Address parkingAddress) {
+		this.parkingAddress = parkingAddress;
+	}
+
+	public Integer getFreeCapacity() {
+		return freeCapacity;
+	}
+
+	public void setFreeCapacity(Integer freeCapacity) {
+		this.freeCapacity = freeCapacity;
 	}
 
 	@Override

@@ -11,21 +11,21 @@ import com.sparkies.spark.model.Parking;
  *
  */
 public interface IParkingService {
-	
-	/**
-	 * retourne la liste des parkings disponibles avec leurs données liées au parking
-	 * @return
-	 */
-	List<Parking> getAllParking();
-	
-	/**
-	 *  retourne la liste des parkings disponibles  autour d'un point à une distance maximum définie en km
-	 *
-	 * @param xlong
-	 * @param Xlat
-	 * @param maxRange distance max en km
-	 * @return
-	 */
-	List<Parking> getParkingList(Double xLong, Double xLat, Double maxRange);
+//
+//	/**
+//	 * retourne la liste des parkings disponibles avec leurs données liées au parking
+//	 * @return
+//	 */
+//	List<Parking> getAllParking();
+//
+//	/**
+//	 *  retourne la liste des parkings disponibles  autour d'un point à une distance maximum définie en km
+//	 *
+//	 * @param xlong
+//	 * @param Xlat
+//	 * @param maxRange distance max en km
+//	 * @return
+//	 */
+//	List<Parking> getParkingList(Double xLong, Double xLat, Double maxRange);
 
 }

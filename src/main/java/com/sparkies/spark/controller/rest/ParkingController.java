@@ -16,17 +16,17 @@ import com.sparkies.spark.service.IParkingService;
 @CrossOrigin
 @RequestMapping("api/parking")
 public class ParkingController {
-	@Autowired
-	IParkingService parkingService;
-	@GetMapping
-	public Iterable<Parking>getAll(){
-		return parkingService.getAllParking();
-	}
-	@GetMapping("{lat}/{long}/{distMax}")
-	public Iterable<Parking>getParkingAround(@PathVariable("lat") Double latitude
-			,@PathVariable("long") Double longitude
-			,@PathVariable("distMax") Double distMax){
-				
-		return parkingService.getParkingList(longitude, latitude, distMax);
-	}
+//	@Autowired
+//	IParkingService parkingService;
+//	@GetMapping
+//	public Iterable<Parking>getAll(){
+//		return parkingService.getAllParking();
+//	}
+//	@GetMapping("{lat}/{long}/{distMax}")
+//	public Iterable<Parking>getParkingAround(@PathVariable("lat") Double latitude
+//			,@PathVariable("long") Double longitude
+//			,@PathVariable("distMax") Double distMax){
+//
+//		return parkingService.getParkingList(longitude, latitude, distMax);
+//	}
 }
