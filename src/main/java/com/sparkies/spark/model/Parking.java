@@ -24,12 +24,42 @@ public class Parking {
 	 */
 	@Column(name ="total_places", nullable = false)    
 	private long totalCapacity;
+	
+	
+	@Transient
+	/**
+	 * Nb de places de parkings libres 
+	 */
+	private Integer freeCapacity;
 
 	/**
 	 * TODO
 	 */
 	@Column(name ="NOM", nullable = false)
 	private String name;
+	
+	
+	public Integer getFreeCapacity() {
+		return freeCapacity;
+	}
+
+	public void setFreeCapacity(Integer freeCapacity) {
+		this.freeCapacity = freeCapacity;
+	}
+
+	/**
+	 * url vers l'APÏ parking
+	 */
+	@Column(name ="url_api", nullable = false)
+	private String apiUrl;
+
+	public String getApiUrl() {
+		return apiUrl;
+	}
+
+	public void setApiUrl(String apiUrl) {
+		this.apiUrl = apiUrl;
+	}
 
 	/**
 	 * TODO
