@@ -26,7 +26,7 @@ public class Vehicle {
 	private double consomation;
 	
 	@ManyToOne @JoinColumn(name="id_energie")
-	private Energie energie;
+	private Energy energy;
 
 	@ManyToOne
 	@JoinColumn(name = "id_utilisateur")
@@ -37,12 +37,15 @@ public class Vehicle {
 	@Column(name="type_vehicule", columnDefinition ="enum('moto','voiture')"  )
 	private TypeVehicle typeVehicle;
 	
-	public Vehicle(Long idVehicule, double consomation) {
-		super();
-		this.idVehicle = idVehicule;
-		this.consomation = consomation;
-	}
 
+
+	public Vehicle(Long idVehicle, double consomation, TypeVehicle typeVehicle) {
+		super();
+		this.idVehicle = idVehicle;
+		this.consomation = consomation;
+		this.typeVehicle = typeVehicle;
+	}
+	
 
 	public Vehicle() {
 		super();
@@ -69,14 +72,33 @@ public class Vehicle {
 	}
 
 
-	public Energie getEnergie() {
-		return energie;
+	public Energy getEnergy() {
+		return energy;
 	}
 
 
-	public void setEnergie(Energie energie) {
-		this.energie = energie;
+	public void setEnergy(Energy energy) {
+		this.energy = energy;
 	}
-	
-	
+
+
+	public User getVehicleUser() {
+		return vehicleUser;
+	}
+
+
+	public void setVehicleUser(User vehicleUser) {
+		this.vehicleUser = vehicleUser;
+	}
+
+
+	public TypeVehicle getTypeVehicle() {
+		return typeVehicle;
+	}
+
+
+	public void setTypeVehicle(TypeVehicle typeVehicle) {
+		this.typeVehicle = typeVehicle;
+	}
+
 }
