@@ -2,7 +2,6 @@ package com.sparkies.spark.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import org.hibernate.type.BasicType;
 
 import javax.persistence.*;
 
@@ -31,6 +30,13 @@ public class Parking {
 	@Column(name ="nom", length = 50, nullable = false)
 	@JsonProperty("nom")
 	private String name;
+
+
+	/**
+	 * Nb de places de parkings libres 
+	 */
+	@Transient
+	private Integer freeCapacity;
 
 	/**
 	 * informative address - display only
@@ -118,6 +124,12 @@ public class Parking {
 	private double yLat;
 
 	/**
+	 * url vers l'APÏ parking
+	 */
+	@Column(name ="url_api", nullable = false)
+	private String apiUrl;
+
+	/**
 	 * Kind of structure
 	 * ('ouvrage' or 'enclos en surface')
 	 * 'structType' -> 'type_ouvra'
@@ -165,23 +177,13 @@ public class Parking {
 	private int NbRes;
 
 	/**
-	 * Parking address
-	 */
-	@OneToOne
-	@JoinColumn(name="id_adresse_adresse")
-    private Address parkingAddress;
-
-	/**
-	 * Kind of usage
+	 * Kind of perimeter 'zone'
 	 * ('centre-ville', 'proximité', 'parc relais')
-	 * 'functionType' -> 'typo_fonct'
+	 * 'zone' -> 'id_zone'
 	 * type : String - Max length of 50 'car' && Nullable
 	 */
 	@ManyToOne @JoinColumn(name="id_zone")
 	private Zone zone;
-
-	public Parking() {
-	}
 
 	public Parking(Parking parking) {
 		this.idParking = parking.idParking;
@@ -200,6 +202,10 @@ public class Parking {
 		this.nbLevel = parking.nbLevel;
 		this.nbPub = parking.nbPub;
 		this.NbRes = parking.NbRes;
+	}
+
+	public Parking() {
+		// TODO document why this constructor is empty
 	}
 
 	public String getIdParking() {
@@ -290,6 +296,14 @@ public class Parking {
 		this.yLat = yLat;
 	}
 
+	public String getApiUrl() {
+		return apiUrl;
+	}
+
+	public void setApiUrl(String apiUrl) {
+		this.apiUrl = apiUrl;
+	}
+
 	public String getStructType() {
 		return structType;
 	}
@@ -304,6 +318,14 @@ public class Parking {
 
 	public void setFunctionType(String functionType) {
 		this.functionType = functionType;
+	}
+
+	public Zone getZone() {
+		return zone;
+	}
+
+	public void setZone(Zone zone) {
+		this.zone = zone;
 	}
 
 	public int getNbLevel() {
@@ -330,34 +352,29 @@ public class Parking {
 		NbRes = nbRes;
 	}
 
-	public Address getParkingAddress() {
-		return parkingAddress;
-	}
-
-	public void setParkingAddress(Address parkingAddress) {
-		this.parkingAddress = parkingAddress;
-	}
-
 	@Override
 	public String toString() {
 		return "Parking{" +
 				"idParking='" + idParking + '\'' +
 				", name='" + name + '\'' +
+				", freeCapacity=" + freeCapacity +
 				", addressInfo='" + addressInfo + '\'' +
 				", asFreeCost=" + asFreeCost +
 				", nbPlaces=" + nbPlaces +
 				", nbPMR=" + nbPMR +
 				", nbVelo=" + nbVelo +
 				", nb2RM=" + nb2RM +
-				", maxHeight=" + maxHeight +
+				", maxHeight='" + maxHeight + '\'' +
 				", xLong=" + xLong +
 				", yLat=" + yLat +
+				", apiUrl='" + apiUrl + '\'' +
 				", structType='" + structType + '\'' +
 				", functionType='" + functionType + '\'' +
 				", nbLevel=" + nbLevel +
 				", nbPub=" + nbPub +
 				", NbRes=" + NbRes +
-				", parkingAddress=" + parkingAddress +
+				", zone=" + zone +
 				'}';
 	}
 }
+
