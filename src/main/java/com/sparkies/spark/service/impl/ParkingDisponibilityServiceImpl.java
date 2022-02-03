@@ -1,5 +1,7 @@
 package com.sparkies.spark.service.impl;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -14,7 +16,7 @@ import com.sparkies.spark.service.ParkingDisponibilityService;
 import com.sparkies.spark.service.exception.ParkAPIReaderException;
 
 @Service
-public class ParkinDisponibilityServiceImpl implements ParkingDisponibilityService {
+public class ParkingDisponibilityServiceImpl implements ParkingDisponibilityService {
 	@Autowired
 	ParkAPIReader reader;
 	@Autowired
@@ -44,10 +46,16 @@ public class ParkinDisponibilityServiceImpl implements ParkingDisponibilityServi
 	public List<Parking> getParkingList(Double xLong, Double xLat, Double maxRange) {
 		// TODO Auto-generated method stub
 		List <Parking> list=getAllParking();
-		return list.stream().filter(p->{
+		
+		Iterator<Parking> it=list.stream().filter(p->{
 			return isWithinPerimeter(p,xLong,xLat,maxRange);
 		}
-		).toList();
+		).iterator();
+		List <Parking> filteredList=new ArrayList<Parking>();
+		while(it.hasNext()) {
+			filteredList.add(it.next());
+		}
+		return filteredList;
 	}
 	/**
 	 *  return true si  la distance entre  le parking et  le point de reference de coordonnées refLong et refLat  est inférieure ou égale à  maxRange
