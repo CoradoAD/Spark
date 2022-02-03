@@ -21,10 +21,11 @@ class TestEmissionService {
 
 	
 	@Test
-	public void TestdistanceLookForPark() {
+	public void TestdistanceLookForPark() { //distance traveled by a user looking for a carpark
+		
 		Zone zone = new Zone();
 		zone.setMinute(7); // minute
-		double result = emissionService.distanceLookForPark(zone);
+		double result = emissionService.distanceLookForPark(zone); //distance traveled when a person is looking for a carpark
 		assertEquals(20, result, 0);
 	}
 

@@ -6,7 +6,7 @@ public interface GainSparkService {
 
 	public int getGainSpark(User user);
 	
-	public int calGainSpark(Double emission);
+	public int calGainSpark(int emissionCarbon);
 	
 	public void saveGainSpark(User user,int spark);
 }

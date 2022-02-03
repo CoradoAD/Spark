@@ -21,14 +21,10 @@ public class EmissionServiceImpl implements EmissionService {
 	ZoneRepo zoneRepo;
 
 	@Autowired
-	VehicleRepo vehicleRepo;
-
-	@Autowired
 	UserRepo userRepo;
-	
 
 	/**
-	 * Allows you to calculate the distance traveled by a user looking for a carpark
+	 * Method to calculate the distance traveled by a user looking for a carpark
 	 * 
 	 */
 	@Override
@@ -39,13 +35,10 @@ public class EmissionServiceImpl implements EmissionService {
 		return speed * time;
 	}
 
-	@Override
-	public double emissionConsumedByRoute(int distanceKmDone, Vehicle vehicle) {
-
-		Energy energy = vehicle.getEnergy();
-		return energy.getCoefficient() * distanceKmDone;
-	}
-
+	/**
+	 * Method to calculate footprint carbon by consomation of the user's car (custom
+	 * values footprint carbon)
+	 */
 	// if the vehicle'energy of client is "Diesel or Essence"
 	@Override
 	public double carbonFootprintByConso(Vehicle vehicle) {
@@ -54,12 +47,27 @@ public class EmissionServiceImpl implements EmissionService {
 		Energy energy = vehicle.getEnergy();
 		double coefficient = energy.getCoefficient();
 		return Math.ceil(consomation * coefficient / 100);
-
 	}
 
+	/**
+	 * Method to calculate the carbon emission when a user looking for a carpark
+	 * (with custom values footprint carbon)
+	 */
 	@Override
 	public double emissionConsumedByRoutePerso(int distanceKmDone, double carbonFootprint) {
-	
+
 		return carbonFootprint * distanceKmDone;
 	}
+
+	/**
+	 * Method to calculate the carbon emission when a user looking for a carpark
+	 * (with standard value footprint carbon)
+	 */
+	@Override
+	public double emissionConsumedByRoute(int distanceKmDone, Vehicle vehicle) {
+
+		Energy energy = vehicle.getEnergy();
+		return energy.getCoefficient() * distanceKmDone;
+	}
+
 }
