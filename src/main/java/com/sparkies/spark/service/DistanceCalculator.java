@@ -1,6 +1,6 @@
 package com.sparkies.spark.service;
 
-public interface IDistanceCalculator {
+public interface DistanceCalculator {
 	public static String UNITE_NAUTICAL_MILES = "N";
 	public static String UNITE_KM = "K";
 	public static String UNITE_MILES = "M";

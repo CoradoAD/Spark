@@ -1,9 +1,10 @@
 package com.sparkies.spark.repository;
 
-import org.springframework.data.repository.CrudRepository;
-
 import com.sparkies.spark.model.Parking;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface ParkingRepo extends CrudRepository<Parking, Integer> {
+@Repository
+public interface ParkingRepo extends CrudRepository<Parking, String> {
 
 }

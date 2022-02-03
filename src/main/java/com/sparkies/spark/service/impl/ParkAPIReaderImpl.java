@@ -14,16 +14,17 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import com.sparkies.spark.model.api.Park;
-import com.sparkies.spark.service.IParkAPIReader;
+import com.sparkies.spark.service.ParkAPIReader;
+import com.sparkies.spark.service.exception.ParkAPIReaderException;
 
 import reactor.core.publisher.Flux;
 
 
 @Service
-public class ParkAPIReader implements IParkAPIReader {
-	private static final int TIMEOUT = 5000;
+public class ParkAPIReaderImpl implements ParkAPIReader {
+	private static final int TIMEOUT = 10000;
 	@Override
-	public Park readPark(String parkApiUrl) {
+	public Park readPark(String parkApiUrl) throws ParkAPIReaderException {
 		
 		WebClient webClient = WebClient
 				  .builder()
@@ -34,17 +35,16 @@ public class ParkAPIReader implements IParkAPIReader {
 		.retrieve()
 		.onStatus(HttpStatus::isError, clientResponse -> {
            
-            throw new RuntimeException("Error processing park API call "+parkApiUrl);
+            throw new ParkAPIReaderException("Error processing park API call "+parkApiUrl);
 		})
 		
-		.bodyToFlux(Park.class).timeout(Duration.ofMillis(TIMEOUT));
-		
+		.bodyToFlux(Park.class).timeout(Duration.ofMillis(TIMEOUT));		
 		return parkFlux.blockLast();
 		
 	}
 
 	
-	@Override
+	
 	public Park readPark(String parkBaseURL, String xmlFileParameter) {
 		
 

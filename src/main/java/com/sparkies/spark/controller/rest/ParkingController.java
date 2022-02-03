@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.sparkies.spark.model.Parking;
-import com.sparkies.spark.service.IParkingService;
+import com.sparkies.spark.service.ParkingDisponibilityService;
 
 
 @RestController
@@ -17,7 +17,7 @@ import com.sparkies.spark.service.IParkingService;
 @RequestMapping("api/parking")
 public class ParkingController {
 	@Autowired
-	IParkingService parkingService;
+	ParkingDisponibilityService parkingService;
 	@GetMapping
 	public Iterable<Parking>getAll(){
 		return parkingService.getAllParking();
@@ -26,7 +26,7 @@ public class ParkingController {
 	public Iterable<Parking>getParkingAround(@PathVariable("lat") Double latitude
 			,@PathVariable("long") Double longitude
 			,@PathVariable("distMax") Double distMax){
-				
+
 		return parkingService.getParkingList(longitude, latitude, distMax);
 	}
 }

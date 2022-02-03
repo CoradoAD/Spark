@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "ZONE")
 public class Zone {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 
@@ -24,7 +24,6 @@ public class Zone {
 	public Long getIdZone() {
 		return idZone;
 	}
-	
 
 	public void setIdZone(Long idZone) {
 		this.idZone = idZone;
@@ -38,20 +37,13 @@ public class Zone {
 		this.nom = nom;
 	}
 
-
 	public int getMinute() {
 		return minute;
 	}
-
 
 	public void setMinute(int minute) {
 		this.minute = minute;
 	}
 
 
-	
-	
-
 }
-
-

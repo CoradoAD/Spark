@@ -3,10 +3,10 @@ package com.sparkies.spark.service.impl;
 
 import org.springframework.stereotype.Service;
 
-import com.sparkies.spark.service.IDistanceCalculator;
+import com.sparkies.spark.service.DistanceCalculator;
 
 @Service
-class DistanceCalculator implements IDistanceCalculator
+class DistanceCalculatorImpl implements DistanceCalculator
 {	
 //	public static String UNITE_NAUTICAL_MILES = "N";
 //	public static String UNITE_KM = "K";

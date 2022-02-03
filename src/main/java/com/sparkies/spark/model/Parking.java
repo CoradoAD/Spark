@@ -1,5 +1,8 @@
 package com.sparkies.spark.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import javax.persistence.*;
 
 /**
@@ -7,7 +10,6 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "PARKING")
-
 public class Parking {
 	
 	/**
@@ -18,54 +20,23 @@ public class Parking {
      */
     @Id
     @Column(name = "id_parking", length = 15 ,nullable = false)  // String ID
+	@JsonProperty("id")
     private String idParking;
 
 	/**
 	 * 'name' -> 'nom'
 	 * type : String - Max length of 50 'car' && not NULL
 	 */
+	@Column(name ="nom", length = 50, nullable = false)
+	@JsonProperty("nom")
+	private String name;
 
 
-
-	@Column(name ="total_places", nullable = false)    
-	private long totalCapacity;
-	
-	
-	@Transient
 	/**
 	 * Nb de places de parkings libres 
 	 */
+	@Transient
 	private Integer freeCapacity;
-
-	/**
-	 * TODO
-	 */
-	@Column(name ="NOM", nullable = false)
-
-	private String name;
-	
-	
-	public Integer getFreeCapacity() {
-		return freeCapacity;
-	}
-
-	public void setFreeCapacity(Integer freeCapacity) {
-		this.freeCapacity = freeCapacity;
-	}
-
-	/**
-	 * url vers l'APÏ parking
-	 */
-	@Column(name ="url_api", nullable = false)
-	private String apiUrl;
-
-	public String getApiUrl() {
-		return apiUrl;
-	}
-
-	public void setApiUrl(String apiUrl) {
-		this.apiUrl = apiUrl;
-	}
 
 	/**
 	 * informative address - display only
@@ -73,6 +44,7 @@ public class Parking {
 	 * type : String - Max length of 50 'car' && not NULL
 	 */
 	@Column(name ="adresse_info", length = 50, nullable = false)
+	@JsonProperty("adresse")
 	private String addressInfo;
 
 	/**
@@ -82,6 +54,7 @@ public class Parking {
 	 * type : Boolean && not NULL
 	 */
 	@Column(name = "gratuit", nullable = false)
+	@JsonProperty("gratuit")
 	private boolean asFreeCost;
 
 	/**
@@ -90,6 +63,7 @@ public class Parking {
 	 * type : Int && not NULL
 	 */
 	@Column(name = "nb_places", nullable = false)
+	@JsonProperty("nb_places")
 	private int nbPlaces;
 
 	/**
@@ -99,6 +73,7 @@ public class Parking {
 	 * type : Int && nullable
 	 */
 	@Column(name = "nb_pmr", nullable = true)
+	@JsonProperty("nb_pmr")
 	private int nbPMR;
 
 	/**
@@ -107,14 +82,16 @@ public class Parking {
 	 * type : Int && nullable
 	 */
 	@Column(name = "nb_velo", nullable = true)
+	@JsonProperty("nb_velo")
 	private int nbVelo;
 
 	/**
-	 * Number of 'Moto' spaces ("2 roues motorisÃ©s")
+	 * Number of 'Moto' spaces ("2 roues motorisés")
 	 * 'nb2RM' -> 'nb_2_rm'
 	 * type : Int && nullable
 	 */
 	@Column(name = "nb_2_rm", nullable = true)
+	@JsonProperty("nb_2_rm")
 	private int nb2RM;
 
 	/**
@@ -123,7 +100,8 @@ public class Parking {
 	 * type : Int && Nullable
 	 */
 	@Column(name = "hauteur_max", nullable = true)
-	private int maxHeight;
+	@JsonProperty("hauteur_ma")
+	private String maxHeight;
 
 	/**
 	 * Park 'longitude' 'Xlong'
@@ -131,7 +109,9 @@ public class Parking {
 	 * type : long && not NULL
 	 */
 	@Column(name = "Xlong", nullable = false)
-	private long xLong;
+	@JsonProperty("Xlong")
+	@JsonSerialize(as= Double.class)
+	private double xLong;
 
 	/**
 	 * Park 'longitude' 'Ylat'
@@ -139,7 +119,9 @@ public class Parking {
 	 * type : long && not NULL
 	 */
 	@Column(name = "Ylat", nullable = false)
-	private long yLat;
+	@JsonProperty("Ylat")
+	@JsonSerialize(as= Double.class)
+	private double yLat;
 
 	/**
 	 * Kind of structure
@@ -148,17 +130,18 @@ public class Parking {
 	 * type : String - Max length of 50 'car' && Nullable
 	 */
 	@Column(name = "type_ouvra", length = 50, nullable = true)
+	@JsonProperty("type_ouvra")
 	private String structType;
 
 	/**
 	 * Kind of usage
-	 * ('centre-ville', 'proximitÃ©', 'parc relais')
+	 * ('centre-ville', 'proximité', 'parc relais')
 	 * 'functionType' -> 'typo_fonct'
 	 * type : String - Max length of 50 'car' && Nullable
 	 */
-	
-	@ManyToOne @JoinColumn(name="id_zone")
-	private Zone zone;
+	@Column(name = "type_fonct", length = 50, nullable = true)
+	@JsonProperty("typo_fonct")
+	private String functionType;
 
 	/**
 	 * Number of levels
@@ -166,6 +149,7 @@ public class Parking {
 	 * type : Int - Max lenght 11 && Nullable
 	 */
 	@Column(name = "nbre_niv", length = 11, nullable = true)
+	@JsonProperty("nbre_niv")
 	private int nbLevel;
 
 	/**
@@ -174,7 +158,15 @@ public class Parking {
 	 * type : Int - Max lenght 11 && Nullable
 	 */
 	@Column(name = "places_pub", length = 11, nullable = true)
+	@JsonProperty("places_pub")
 	private int nbPub;
+
+	/**
+	 * url vers l'APÏ parking
+	 */
+	@Column(name ="url_api", nullable = false)
+	@JsonProperty("url_api")
+	private String apiUrl;
 
 	/**
 	 * Number of residential spaces
@@ -182,15 +174,44 @@ public class Parking {
 	 * type : Int - Max lenght 11 && Nullable
 	 */
 	@Column(name = "places_res", length = 11, nullable = true)
+	@JsonProperty("places_res")
 	private int NbRes;
 
 	/**
-	 * Parking address
+	 * Kind of perimeter 'zone'
+	 * ('centre-ville', 'proximité', 'parc relais')
+	 * 'zone' -> 'id_zone'
+	 * type : String - Max length of 50 'car' && Nullable
 	 */
-	@OneToOne
-	@JoinColumn(name="id_adresse_adresse")
-    
-    private Address parkingAddress;
+	@ManyToOne @JoinColumn(name="id_zone")
+	private Zone zone;
+
+	/**
+	 * Personal and 'Favorites' address
+	 */
+	@ManyToOne
+	@JoinColumn(name="id_adresse")
+	private Address parkingAddress;
+
+	public Parking(Parking parking) {
+		this.idParking = parking.idParking;
+		this.name = parking.name;
+		this.addressInfo = parking.addressInfo;
+		this.asFreeCost = parking.asFreeCost;
+		this.nbPlaces = parking.nbPlaces;
+		this.nbPMR = parking.nbPMR;
+		this.nbVelo = parking.nbVelo;
+		this.nb2RM = parking.nb2RM;
+		this.maxHeight = parking.maxHeight;
+		this.xLong = parking.xLong;
+		this.yLat = parking.yLat;
+		this.structType = parking.structType;
+		this.functionType = parking.functionType;
+		this.nbLevel = parking.nbLevel;
+		this.nbPub = parking.nbPub;
+		this.NbRes = parking.NbRes;
+		this.apiUrl=parking.apiUrl;
+	}
 
 	public Parking() {
 		// TODO document why this constructor is empty
@@ -260,28 +281,36 @@ public class Parking {
 		this.nb2RM = nb2RM;
 	}
 
-	public int getMaxHeight() {
+	public String getMaxHeight() {
 		return maxHeight;
 	}
 
-	public void setMaxHeight(int maxHeight) {
+	public void setMaxHeight(String maxHeight) {
 		this.maxHeight = maxHeight;
 	}
 
-	public long getxLong() {
+	public double getxLong() {
 		return xLong;
 	}
 
-	public void setxLong(long xLong) {
+	public void setxLong(double xLong) {
 		this.xLong = xLong;
 	}
 
-	public long getyLat() {
+	public double getyLat() {
 		return yLat;
 	}
 
-	public void setyLat(long yLat) {
+	public void setyLat(double yLat) {
 		this.yLat = yLat;
+	}
+
+	public String getApiUrl() {
+		return apiUrl;
+	}
+
+	public void setApiUrl(String apiUrl) {
+		this.apiUrl = apiUrl;
 	}
 
 	public String getStructType() {
@@ -292,6 +321,13 @@ public class Parking {
 		this.structType = structType;
 	}
 
+	public String getFunctionType() {
+		return functionType;
+	}
+
+	public void setFunctionType(String functionType) {
+		this.functionType = functionType;
+	}
 
 	public Zone getZone() {
 		return zone;
@@ -331,6 +367,39 @@ public class Parking {
 
 	public void setParkingAddress(Address parkingAddress) {
 		this.parkingAddress = parkingAddress;
+	}
+
+	public Integer getFreeCapacity() {
+		return freeCapacity;
+	}
+
+	public void setFreeCapacity(Integer freeCapacity) {
+		this.freeCapacity = freeCapacity;
+	}
+
+	@Override
+	public String toString() {
+		return "Parking{" +
+				"idParking='" + idParking + '\'' +
+				", name='" + name + '\'' +
+				", freeCapacity=" + freeCapacity +
+				", addressInfo='" + addressInfo + '\'' +
+				", asFreeCost=" + asFreeCost +
+				", nbPlaces=" + nbPlaces +
+				", nbPMR=" + nbPMR +
+				", nbVelo=" + nbVelo +
+				", nb2RM=" + nb2RM +
+				", maxHeight='" + maxHeight + '\'' +
+				", xLong=" + xLong +
+				", yLat=" + yLat +
+				", apiUrl='" + apiUrl + '\'' +
+				", structType='" + structType + '\'' +
+				", functionType='" + functionType + '\'' +
+				", nbLevel=" + nbLevel +
+				", nbPub=" + nbPub +
+				", NbRes=" + NbRes +
+				", zone=" + zone +
+				'}';
 	}
 }
 

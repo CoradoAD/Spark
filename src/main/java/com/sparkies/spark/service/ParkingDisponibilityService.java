@@ -10,14 +10,14 @@ import com.sparkies.spark.model.Parking;
  * @author Brigitte
  *
  */
-public interface IParkingService {
-	
+public interface ParkingDisponibilityService {
+
 	/**
 	 * retourne la liste des parkings disponibles avec leurs données liées au parking
 	 * @return
 	 */
 	List<Parking> getAllParking();
-	
+
 	/**
 	 *  retourne la liste des parkings disponibles  autour d'un point à une distance maximum définie en km
 	 *

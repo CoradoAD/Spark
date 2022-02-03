@@ -8,33 +8,37 @@ import org.springframework.stereotype.Service;
 import com.sparkies.spark.model.Parking;
 import com.sparkies.spark.model.api.Park;
 import com.sparkies.spark.repository.ParkingRepo;
-import com.sparkies.spark.service.IDistanceCalculator;
-import com.sparkies.spark.service.IParkAPIReader;
-import com.sparkies.spark.service.IParkingService;
+import com.sparkies.spark.service.DistanceCalculator;
+import com.sparkies.spark.service.ParkAPIReader;
+import com.sparkies.spark.service.ParkingDisponibilityService;
+import com.sparkies.spark.service.exception.ParkAPIReaderException;
 
 @Service
-public class ParkingService implements IParkingService {
+public class ParkinDisponibilityServiceImpl implements ParkingDisponibilityService {
 	@Autowired
-	IParkAPIReader reader;
+	ParkAPIReader reader;
 	@Autowired
-	IDistanceCalculator distanceCalculator;
-	@Autowired
-	@Qualifier("parkingRepoMock")	
+	DistanceCalculator distanceCalculator;
+	@Autowired	
 	ParkingRepo parkingRepository;
 
 	@Override
 	public List<Parking> getAllParking() {
-		// recupere la liste des parkings en base
 		List <Parking> parkings=(List<Parking>) parkingRepository.findAll();
 		parkings.forEach(parking->{
-			Park park=reader.readPark(parking.getApiUrl());
-			parking.setFreeCapacity(park.getFree());
+			Park park;
+			try {
+				park = reader.readPark(parking.getApiUrl());
+			} catch (ParkAPIReaderException e) {				
+				e.printStackTrace();
+				park=null;
+			}
+			if(park!=null)parking.setFreeCapacity(park.getFree());
 		});
-		// pour chaque parking récuperation des dernières disponibilités
 		return parkings;
 	}
 
-	
+
 
 	@Override
 	public List<Parking> getParkingList(Double xLong, Double xLat, Double maxRange) {
@@ -51,12 +55,9 @@ public class ParkingService implements IParkingService {
 	 *
 	 */
 	private boolean isWithinPerimeter (Parking parking, Double refLong, Double refLat, Double maxRange ) {
-		Double parkingLong=parking.getParkingAddress().getLongitude();
-		Double parkingLat=parking.getParkingAddress().getLatitude();
-		Double distance =distanceCalculator.distance(parkingLat, parkingLong, refLat, refLong, IDistanceCalculator.UNITE_KM);
-		
-		
-		System.out.println("distance calculée: "+distance);
+		Double parkingLong=parking.getxLong();
+		Double parkingLat=parking.getyLat();
+		Double distance =distanceCalculator.distance(parkingLat, parkingLong, refLat, refLong, DistanceCalculator.UNITE_KM);
 		return (distance<=maxRange);
 	}
 
