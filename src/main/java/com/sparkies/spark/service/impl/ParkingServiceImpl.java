@@ -1,13 +1,16 @@
-package com.sparkies.spark.service;
+package com.sparkies.spark.service.impl;
 
 import com.sparkies.spark.model.Parking;
 import com.sparkies.spark.repository.ParkingRepo;
+import com.sparkies.spark.service.ParkingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.Optional;
 
-public class ParkingServiceBean implements ParkingService {
+@Service
+public class ParkingServiceImpl implements ParkingService {
     @Autowired
     private ParkingRepo parkingRepository;
 

@@ -3,6 +3,7 @@ package com.sparkies.spark.service;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sparkies.spark.model.Parking;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,6 +12,7 @@ import java.util.List;
 /**
  * Convert JSON File to Java Objects
  */
+@Component
 public class JSONParkLoader {
 
     ObjectMapper mapper = new ObjectMapper();

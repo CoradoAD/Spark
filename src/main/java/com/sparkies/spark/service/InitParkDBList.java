@@ -3,8 +3,6 @@ package com.sparkies.spark.service;
 import com.sparkies.spark.model.Parking;
 import com.sparkies.spark.repository.ParkingRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -19,20 +17,12 @@ public class InitParkDBList {
     @Autowired
     ParkingRepo parkingRepository;
 
-    public InitParkDBList() {
-
-        try {
-            this.initialize();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     /**
      * Create 'Parkings' in DB
      * @return List<Parking>
      * @throws IOException Jackson Exception
      */
+    @Autowired
     public List<Parking> initialize() throws IOException {
 
         try {
