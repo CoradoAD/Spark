@@ -3,10 +3,11 @@ package com.sparkies.spark.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.sparkies.spark.exception.ErrorEnergy;
 import com.sparkies.spark.exception.ErrorVehicle;
-
+@RestControllerAdvice
 public class ErrorGeneralController {
 
 	/**
@@ -41,7 +42,7 @@ public class ErrorGeneralController {
 	@ExceptionHandler(value = { ErrorEnergy.class })
 	@ResponseStatus(value = HttpStatus.NOT_FOUND)
 	public String errorEnergyException(ErrorEnergy e) {
-		String message = "Erreur lié au energy : " + e.getMessage();
+		String message = "Erreur lié au energie : " + e.getMessage();
 		return message;
 	}
 }

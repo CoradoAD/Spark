@@ -1,34 +1,46 @@
 package com.sparkies.spark.service.impl;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.List;
+import java.time.Duration;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
-
 import com.sparkies.spark.model.api.Park;
 import com.sparkies.spark.service.IParkAPIReader;
+
+import reactor.core.publisher.Flux;
 
 
 @Service
 public class ParkAPIReader implements IParkAPIReader {
-
+	private static final int TIMEOUT = 5000;
 	@Override
 	public Park readPark(String parkApiUrl) {
+		
 		WebClient webClient = WebClient
 				  .builder()
-				  .baseUrl(parkApiUrl)				
-				  .build();
-		return webClient.get().retrieve().bodyToFlux(Park.class).blockLast();
+				  .baseUrl(parkApiUrl)		  
+	              .build();
+				
+		Flux<Park> parkFlux=webClient.get()
+		.retrieve()
+		.onStatus(HttpStatus::isError, clientResponse -> {
+           
+            throw new RuntimeException("Error processing park API call "+parkApiUrl);
+		})
+		
+		.bodyToFlux(Park.class).timeout(Duration.ofMillis(TIMEOUT));
+		
+		return parkFlux.blockLast();
+		
 	}
 
 	

@@ -25,7 +25,7 @@ public class ParkAPIReaderTest {
 		System.out.println("Nb Places libres: "+park.getFree());
 		System.out.println("Nb total: "+park.getTotal());
 	}
-
+	
 	@Test
 	public void testParkAPI_uri() {
 		Park park=reader.readPark("https://data.montpellier3m.fr/sites/default/files/ressources/","FR_MTP_TRIA.xml");
