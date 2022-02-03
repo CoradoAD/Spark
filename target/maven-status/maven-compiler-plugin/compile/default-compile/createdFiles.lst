@@ -1,0 +1,11 @@
+com\sparkies\spark\model\Parking.class
+com\sparkies\spark\model\Vehicle.class
+com\sparkies\spark\model\User.class
+com\sparkies\spark\connection\ConnectionDB.class
+com\sparkies\spark\model\Address.class
+com\sparkies\spark\model\Energie.class
+com\sparkies\spark\model\TypeVehicle.class
+com\sparkies\spark\SparkApplication.class
+com\sparkies\spark\model\Admin.class
+com\sparkies\spark\model\Person.class
+com\sparkies\spark\model\Favorite.class

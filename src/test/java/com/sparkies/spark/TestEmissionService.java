@@ -19,19 +19,23 @@ class TestEmissionService {
 	@Autowired
 	private EmissionService emissionService;
 
-	@Autowired
-	UserRepo userRepo;
+	
+	@Test
+	public void TestdistanceLookForPark() {
+		Zone zone = new Zone();
+		zone.setMinute(7); // minute
+		double result = emissionService.distanceLookForPark(zone);
+		assertEquals(20, result, 0);
+	}
 
 	@Test
 	public void TestCarbonFootprintByConso() {
 
-		Vehicle vehicule = new Vehicle(null, 100, TypeVehicle.voiture);
+		Vehicle vehicule = new Vehicle(null, 5, TypeVehicle.voiture);
 		Energy energy = new Energy(null, "Diesel", 2392);
-
 		vehicule.setEnergy(energy);
-
-		double result = emissionService.carbonFootprintByConso(vehicule);
-		assertEquals(2392, result, 0);
+		double result = emissionService.carbonFootprintByConso(vehicule); //Give a carbonFootprint of vehicule
+		assertEquals(120, result, 0);
 	}
 
 	@Test
@@ -46,14 +50,11 @@ class TestEmissionService {
 
 	}
 
+
 	@Test
-	public void TestdistanceLookForPark() {
-
-		Zone zone = new Zone();
-		zone.setMinute(7); // minute
-		double result = emissionService.distanceLookForPark(zone);
-		assertEquals(20, result, 0);
-
+	public void TestemissionConsumedByRoutePerso() {
+		
+		double result =  emissionService.emissionConsumedByRoutePerso(4, 120);
+		assertEquals(480, result, 0);
 	}
-
 }

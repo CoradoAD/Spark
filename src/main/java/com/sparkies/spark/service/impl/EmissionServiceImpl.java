@@ -39,9 +39,6 @@ public class EmissionServiceImpl implements EmissionService {
 		return speed * time;
 	}
 
-	/**
-	 * 
-	 */
 	@Override
 	public double emissionConsumedByRoute(int distanceKmDone, Vehicle vehicle) {
 
@@ -51,12 +48,18 @@ public class EmissionServiceImpl implements EmissionService {
 
 	// if the vehicle'energy of client is "Diesel or Essence"
 	@Override
-	public double carbonFootprintByConso(Vehicle vehicule) {
+	public double carbonFootprintByConso(Vehicle vehicle) {
 
-		double consomation = vehicule.getConsomation();
-		Energy energy = vehicule.getEnergy();
+		double consomation = vehicle.getConsomation();
+		Energy energy = vehicle.getEnergy();
 		double coefficient = energy.getCoefficient();
 		return Math.ceil(consomation * coefficient / 100);
 
+	}
+
+	@Override
+	public double emissionConsumedByRoutePerso(int distanceKmDone, double carbonFootprint) {
+	
+		return carbonFootprint * distanceKmDone;
 	}
 }

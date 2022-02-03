@@ -16,7 +16,7 @@ public class User extends Person{
      * Double && not NULL (at least equal to zero)
      */
     @Column(name = "NOMBRE_SPARK", nullable = false)
-    private Double numberOfSparks;
+    private int numberOfSparks;
 
     /**
      * 'registrationDate' -> 'DATE_INSCRIPTION'
@@ -56,15 +56,23 @@ public class User extends Person{
     }
     
 
-    public Double getNumberOfSparks() {
-        return numberOfSparks;
-    }
 
-    public void setNumberOfSparks(Double numberOfSparks) {
-        this.numberOfSparks = numberOfSparks;
-    }
 
-    public Date getRegistrationDate() {
+    public int getNumberOfSparks() {
+		return numberOfSparks;
+	}
+
+
+
+
+	public void setNumberOfSparks(int numberOfSparks) {
+		this.numberOfSparks = numberOfSparks;
+	}
+
+
+
+
+	public Date getRegistrationDate() {
         return registrationDate;
     }
 
