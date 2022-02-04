@@ -38,11 +38,11 @@ class TestGainSpark {
 		assertEquals(5, result);
 	}
 
-	@Test
-	@Ignore
-	void testSaveGainSpark() {
-
-		User user = userRepo.findById(1L).get();
-		gainSparkService.saveGainSpark(user, 40);
-	}
+	//	@Test
+//	@Ignore
+//	void testSaveGainSpark() {
+//
+//		User user = userRepo.findById(1L).get();
+//		gainSparkService.saveGainSpark(user, 40);
+//	}
 }
