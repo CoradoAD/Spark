@@ -43,7 +43,7 @@ public class VehicleControllerRest {
 	private void checkVehicle(Long vid) throws ErrorVehicle {
 
 		if (vehicleRepo.findById(vid).isEmpty()) {
-			throw new ErrorVehicle("N° de l' emprunt " + vid + " non trouvé");
+			throw new ErrorVehicle("N° du vehicule " + vid + " non trouvé");
 		}
 	}
 
