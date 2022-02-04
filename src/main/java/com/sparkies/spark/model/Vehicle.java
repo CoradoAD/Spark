@@ -28,7 +28,7 @@ public class Vehicle {
 	@ManyToOne @JoinColumn(name="id_energie")
 	private Energy energy;
 
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER, optional=true, cascade=CascadeType.ALL)
 	@JoinColumn(name = "id_utilisateur")
 	private User vehicleUser;
 	
