@@ -146,8 +146,6 @@ public class Parking {
 	@JsonProperty("typo_fonct")
 	private Zone functionType;
 	
-	
-
 
 	/**
 	 * Number of levels

@@ -1,9 +1,7 @@
 package com.sparkies.spark.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -15,7 +13,6 @@ public class Zone {
 
 
 	@Id
-	@Column(name="nameZone")
 	@Nullable
 	private String nom;
 	
@@ -36,7 +33,6 @@ public class Zone {
 
 	public void setMinute(int minute) {
 		this.minute = minute;
+		
 	}
-
-
 }
