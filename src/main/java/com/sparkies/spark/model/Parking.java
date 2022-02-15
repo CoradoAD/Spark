@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.persistence.*;
 
+import org.springframework.lang.Nullable;
+
 /**
  * Address Entity for SQL table 'PARKING'
  */
@@ -139,9 +141,13 @@ public class Parking {
 	 * 'functionType' -> 'typo_fonct'
 	 * type : String - Max length of 50 'car' && Nullable
 	 */
-	@Column(name = "type_fonct", length = 50, nullable = true)
+    @Nullable
+	@ManyToOne @JoinColumn(name="nameZone")
 	@JsonProperty("typo_fonct")
-	private String functionType;
+	private Zone functionType;
+	
+	
+
 
 	/**
 	 * Number of levels
@@ -176,15 +182,6 @@ public class Parking {
 	@Column(name = "places_res", length = 11, nullable = true)
 	@JsonProperty("places_res")
 	private int NbRes;
-
-	/**
-	 * Kind of perimeter 'zone'
-	 * ('centre-ville', 'proximité', 'parc relais')
-	 * 'zone' -> 'id_zone'
-	 * type : String - Max length of 50 'car' && Nullable
-	 */
-	@ManyToOne @JoinColumn(name="id_zone")
-	private Zone zone;
 
 	/**
 	 * Personal and 'Favorites' address
@@ -321,20 +318,13 @@ public class Parking {
 		this.structType = structType;
 	}
 
-	public String getFunctionType() {
+
+	public Zone getFunctionType() {
 		return functionType;
 	}
 
-	public void setFunctionType(String functionType) {
+	public void setFunctionType(Zone functionType) {
 		this.functionType = functionType;
-	}
-
-	public Zone getZone() {
-		return zone;
-	}
-
-	public void setZone(Zone zone) {
-		this.zone = zone;
 	}
 
 	public int getNbLevel() {
@@ -398,7 +388,7 @@ public class Parking {
 				", nbLevel=" + nbLevel +
 				", nbPub=" + nbPub +
 				", NbRes=" + NbRes +
-				", zone=" + zone +
+				
 				'}';
 	}
 }

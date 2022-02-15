@@ -7,27 +7,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.lang.Nullable;
+
 @Entity
 @Table(name = "ZONE")
 public class Zone {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 
-	@Column(name="id_zone")
-	private Long idZone; 
-	
+	@Id
+	@Column(name="nameZone")
+	@Nullable
 	private String nom;
 	
 	private int minute;
 
-	public Long getIdZone() {
-		return idZone;
-	}
-
-	public void setIdZone(Long idZone) {
-		this.idZone = idZone;
-	}
 
 	public String getNom() {
 		return nom;
