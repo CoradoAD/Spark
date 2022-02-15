@@ -5,8 +5,6 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.persistence.*;
 
-import org.springframework.lang.Nullable;
-
 /**
  * Address Entity for SQL table 'PARKING'
  */
@@ -141,11 +139,9 @@ public class Parking {
 	 * 'functionType' -> 'typo_fonct'
 	 * type : String - Max length of 50 'car' && Nullable
 	 */
-    @Nullable
-	@ManyToOne @JoinColumn(name="nameZone")
+	@Column(name = "type_fonct", length = 50, nullable = true)
 	@JsonProperty("typo_fonct")
-	private Zone functionType;
-	
+	private String functionType;
 
 	/**
 	 * Number of levels
@@ -180,6 +176,7 @@ public class Parking {
 	@Column(name = "places_res", length = 11, nullable = true)
 	@JsonProperty("places_res")
 	private int NbRes;
+
 
 	/**
 	 * Personal and 'Favorites' address
@@ -316,14 +313,14 @@ public class Parking {
 		this.structType = structType;
 	}
 
-
-	public Zone getFunctionType() {
+	public String getFunctionType() {
 		return functionType;
 	}
 
-	public void setFunctionType(Zone functionType) {
+	public void setFunctionType(String functionType) {
 		this.functionType = functionType;
 	}
+
 
 	public int getNbLevel() {
 		return nbLevel;
@@ -386,7 +383,7 @@ public class Parking {
 				", nbLevel=" + nbLevel +
 				", nbPub=" + nbPub +
 				", NbRes=" + NbRes +
-				
+	
 				'}';
 	}
 }
