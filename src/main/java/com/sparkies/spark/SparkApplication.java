@@ -5,7 +5,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
-import com.sparkies.spark.model.Zone;
 import com.sparkies.spark.service.ZoneService;
 
 import java.io.IOException;
@@ -44,5 +43,4 @@ public class SparkApplication {
 //      zoneService.saveDataZone(zone3);
 //      
 	}
-
 }

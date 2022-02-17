@@ -13,6 +13,6 @@ public interface EmissionService {
 	
 	public double emissionConsumedByRoutePerso(int distanceKmDone, double carbonFootprint);
 	
-
-
 }
+
+

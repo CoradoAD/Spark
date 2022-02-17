@@ -9,4 +9,5 @@ public interface GainSparkService {
 	public int calGainSpark(int emissionCarbon);
 	
 	public void saveGainSpark(User user,int spark);
+	
 }
