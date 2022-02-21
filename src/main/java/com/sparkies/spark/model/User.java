@@ -1,46 +1,76 @@
 package com.sparkies.spark.model;
 
-import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * User Entity for SQL table 'UTILISATEUR'
  */
 @Entity
-@Table (name = "UTILISATEUR")
-public class User extends Person{
+@Table(name = "users")
 
-    /**
-     * 'numberOfSparks' -> 'NOMBRE_SPARK'
-     * Double && not NULL (at least equal to zero)
-     */
-    @Column(name = "NOMBRE_SPARK", nullable = false)
-    private int numberOfSparks;
+public class User extends Person {
 
-    /**
-     * 'registrationDate' -> 'DATE_INSCRIPTION'
-     * Datetime && not NULL
-     */
-    @Column(name = "DATE_INSCRIPTION", nullable = false)
-    private Date registrationDate;
+	/**
+	 * 'numberOfSparks' -> 'NOMBRE_SPARK' Double && not NULL (at least equal to
+	 * zero)
+	 */
+	@Column(name = "NOMBRE_SPARK")
+	private int numberOfSparks;
 
-    /**
-     * 'isPMR' -> 'isPMR'
-     * Boolean && not NULL
-     */
-    @Column(name = "isPMR", nullable = false)
-    private Boolean isPMR;
+	/**
+	 * 'registrationDate' -> 'DATE_INSCRIPTION' Datetime && not NULL
+	 */
+	@Column(name = "DATE_INSCRIPTION")
+	private Date registrationDate = new Date();
 
-    /**
-     * Personal and 'Favorites' address
-     */
-    @ManyToOne
-    @JoinColumn(name="id_adresse")
-    private Address personnalAddress;
+	/**
+	 * 'isPMR' -> 'isPMR' Boolean && not NULL
+	 */
+	@Column(name = "isPMR")
+	private Boolean isPMR = false;
 
-    @OneToMany(mappedBy = "favoriteUser")
-    private List<Favorite> favorites;
+	/**
+	 * Personal and 'Favorites' address
+	 */
+	@ManyToOne
+	@JoinColumn(name = "id_adresse")
+	private Address personnalAddress;
+
+	@OneToMany(mappedBy = "favoriteUser")
+	private List<Favorite> favorites;
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "id_utilisateur"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles = new HashSet<>();
+
+	public User() {
+		super();
+	}
+
+	public User(String username, String userEmail, String encode) {
+		super(username, userEmail, encode);
+	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
 
 	public int getNumberOfSparks() {
 		return numberOfSparks;
@@ -81,7 +111,5 @@ public class User extends Person{
 	public void setFavorites(List<Favorite> favorites) {
 		this.favorites = favorites;
 	}
-    
-    
 
 }
