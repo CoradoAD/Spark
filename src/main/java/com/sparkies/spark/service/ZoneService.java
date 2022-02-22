@@ -8,8 +8,6 @@ public interface ZoneService {
 	
 	public void saveDataZone(Zone zone);
 	
-	public Zone findOneZoneByName(String name);
-	
 	public Iterable<Zone> findAll();
 	
 	

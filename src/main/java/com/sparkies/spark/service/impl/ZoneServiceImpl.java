@@ -18,26 +18,6 @@ public class ZoneServiceImpl implements ZoneService {
 		
 		zoneRepo.save(zone);
 	}
-
-	@Override
-	public Zone findOneZoneByName(String name) {
-		
-	
-		
-      Iterable<Zone> ListZone = zoneRepo.findAll();
-      
-      ListZone.forEach(zone -> {
-    	  
-    	  if(zone.getNom() == "Centre-ville") {
-    		  
-    		  
-    	
-    	  };    
-      });
-	return null;
-      
-	};
-
 	
 
 	@Override
@@ -45,7 +25,4 @@ public class ZoneServiceImpl implements ZoneService {
 
 		return zoneRepo.findAll();
 	}
-
-
-
 }

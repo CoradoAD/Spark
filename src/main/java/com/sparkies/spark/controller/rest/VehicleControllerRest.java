@@ -68,7 +68,6 @@ public class VehicleControllerRest {
 	}
 	
 
-
 	/**
 	 * Get all vehicle from DB
 	 * 
@@ -107,6 +106,7 @@ public class VehicleControllerRest {
 			throw new ErrorVehicle("N°  du vehicule " + vid + " passé en variable est different du contenu JSON : "
 					+ vehicle.getIdVehicle());
 		}
+		
 		return vehicleRepo.save(vehicle);
 	}
 
