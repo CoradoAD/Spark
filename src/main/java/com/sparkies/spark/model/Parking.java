@@ -177,14 +177,6 @@ public class Parking {
 	@JsonProperty("places_res")
 	private int NbRes;
 
-	/**
-	 * Kind of perimeter 'zone'
-	 * ('centre-ville', 'proximité', 'parc relais')
-	 * 'zone' -> 'id_zone'
-	 * type : String - Max length of 50 'car' && Nullable
-	 */
-	@ManyToOne @JoinColumn(name="id_zone")
-	private Zone zone;
 
 	/**
 	 * Personal and 'Favorites' address
@@ -329,13 +321,6 @@ public class Parking {
 		this.functionType = functionType;
 	}
 
-	public Zone getZone() {
-		return zone;
-	}
-
-	public void setZone(Zone zone) {
-		this.zone = zone;
-	}
 
 	public int getNbLevel() {
 		return nbLevel;
@@ -398,7 +383,7 @@ public class Parking {
 				", nbLevel=" + nbLevel +
 				", nbPub=" + nbPub +
 				", NbRes=" + NbRes +
-				", zone=" + zone +
+	
 				'}';
 	}
 }
