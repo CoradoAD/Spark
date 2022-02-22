@@ -44,7 +44,7 @@ public class InitParkDBList {
             for (Parking myPark : myParks) {
             	
                 
-                if (myPark.getFunctionType().equals("Centre-ville") && !zoneArray.contains("Centre-ville")) {
+                if (myPark.getFunctionType().equals("Centre-ville")) {
                 	
                 	Zone zone1 = new Zone();
                 	zone1.setIdZone(1L);
@@ -53,7 +53,7 @@ public class InitParkDBList {
                 	zoneService.saveDataZone(zone1);
              
                 	
-                }else if (myPark.getFunctionType().equals("Parc relais") && !zoneArray.contains("Parc relais")) {
+                }else if (myPark.getFunctionType().equals("Parc relais")) {
                 	
                    	Zone zone2 = new Zone();
                    	zone2.setIdZone(2L);
@@ -62,7 +62,7 @@ public class InitParkDBList {
                 	zoneService.saveDataZone(zone2);
     
                 	
-                }else if (myPark.getFunctionType().equals("Proximité") && !zoneArray.contains("Parc relais")) {
+                }else if (myPark.getFunctionType().equals("Proximité")) {
                 	
                   	Zone zone3 = new Zone();
                 	zone3.setIdZone(3L);
@@ -72,9 +72,7 @@ public class InitParkDBList {
                 	
                 }
                 
-                
                 Parking newPark = new Parking(myPark);
-               
          
                 parkingRepository.save(newPark);
                 System.out.println("########################");
