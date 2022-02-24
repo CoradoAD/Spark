@@ -134,7 +134,6 @@ public class AuthController {
 		Vehicle vehicle = new Vehicle(null, 0L, null);
 		Energy energy = energyService.getOneEnergy(1L).get();
 		
-		
 
 		userRepository.save(user);
 		vehicleService.addVehiculeByUser(vehicle, TypeVehicle.voiture, energy, user);
