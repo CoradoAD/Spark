@@ -17,11 +17,6 @@ import com.sparkies.spark.security.jwt.service.UserDetailsImpl;
 import io.jsonwebtoken.*;
 
 
-
-
-
-
-
 @Component
 public class JwtUtils {
 	

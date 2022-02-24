@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sparkies.spark.model.Energy;
-
+import com.sparkies.spark.model.TypeVehicle;
 import com.sparkies.spark.model.User;
 import com.sparkies.spark.model.Vehicle;
 
@@ -21,9 +21,10 @@ public class VehicleServiceImpl implements VehicleService {
 
 
 	@Override
-	public void addVehiculeByUser(Vehicle vehicle, Energy energy, User user) {
+	public void addVehiculeByUser(Vehicle vehicle, TypeVehicle typeVehicle, Energy energy, User user) {
 
 		vehicle.setVehicleUser(user);
+		vehicle.setTypeVehicle(typeVehicle);;
 		vehicle.setEnergy(energy);
 		vehicleRepo.save(vehicle);
 

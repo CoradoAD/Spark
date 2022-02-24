@@ -3,11 +3,13 @@ package com.sparkies.spark.service.impl;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.sparkies.spark.model.Energy;
 import com.sparkies.spark.repository.EnergyRepo;
 import com.sparkies.spark.service.EnergyService;
 
+@Service
 public class EnergyServiceImpl implements EnergyService {
 
 	@Autowired

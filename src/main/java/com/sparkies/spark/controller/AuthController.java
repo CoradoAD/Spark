@@ -16,15 +16,22 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sparkies.spark.model.Energy;
+import com.sparkies.spark.model.TypeVehicle;
 import com.sparkies.spark.model.User;
+import com.sparkies.spark.model.Vehicle;
 import com.sparkies.spark.payload.request.LoginRequest;
 import com.sparkies.spark.payload.request.SignupRequest;
 import com.sparkies.spark.payload.response.JwtResponse;
 import com.sparkies.spark.payload.response.MessageResponse;
+import com.sparkies.spark.repository.EnergyRepo;
 import com.sparkies.spark.repository.RoleRepository;
 import com.sparkies.spark.repository.UserRepo;
 import com.sparkies.spark.security.jwt.JwtUtils;
 import com.sparkies.spark.security.jwt.service.UserDetailsImpl;
+import com.sparkies.spark.service.EnergyService;
+import com.sparkies.spark.service.VehicleService;
+import com.sparkies.spark.service.impl.EnergyServiceImpl;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -42,6 +49,12 @@ public class AuthController {
 
 	@Autowired
 	PasswordEncoder encoder;
+	
+	@Autowired
+	VehicleService vehicleService;
+	
+	@Autowired
+	EnergyService energyService; 
 
 	@Autowired
 	JwtUtils jwtUtils;
@@ -114,7 +127,19 @@ public class AuthController {
 //		user.setRoles(roles);
 		// System.out.println(user);
 		// System.out.println(userRepository.save(user));
+		
+		/**
+		 * User's vehicle by default
+		 */
+		Vehicle vehicle = new Vehicle(null, 0L, null);
+		Energy energy = energyService.getOneEnergy(1L).get();
+		
+		
+
 		userRepository.save(user);
+		vehicleService.addVehiculeByUser(vehicle, TypeVehicle.voiture, energy, user);
+		
+		
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 	}
 
