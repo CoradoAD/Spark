@@ -57,7 +57,7 @@ public class InitParkDBList {
                 	
                    	Zone zone2 = new Zone();
                    	zone2.setIdZone(2L);
-                	zone2.setNom("Relais");
+                	zone2.setNom("Parc relais");
                 	zone2.setMinute(3);
                 	zoneService.saveDataZone(zone2);
     

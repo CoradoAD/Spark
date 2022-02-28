@@ -1,5 +1,6 @@
 package com.sparkies.spark.controller;
 
+import java.security.GeneralSecurityException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,8 +12,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -78,9 +81,6 @@ public class AuthController {
 
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@RequestBody SignupRequest signUpRequest) {
-//		System.out.println(signUpRequest.getUsername());
-//		System.out.println(signUpRequest.getUserEmail());
-//		System.out.println(signUpRequest.getUserPwd());
 
 		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
 			return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken!"));
@@ -93,44 +93,6 @@ public class AuthController {
 		// Create new user's account
 		User user = new User(signUpRequest.getUsername(), signUpRequest.getUserEmail(),
 				encoder.encode(signUpRequest.getUserPwd()));
-//		System.out.println(signUpRequest.getUsername());
-//		System.out.println(signUpRequest.getUserEmail());
-//		System.out.println(signUpRequest.getUserEmail());
-
-//		Set<String> strRoles = signUpRequest.getRole();
-//		Set<Role> roles = new HashSet<>();
-//
-//		if (strRoles == null) {
-//			Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-//					.orElseThrow(() -> new RuntimeException("Error: Role user is not found."));
-//			roles.add(userRole);
-//			System.out.println(roles.add(userRole));
-//
-//		} else {
-//			strRoles.forEach(role -> {
-//				switch (role) {
-//				case "admin":
-//					Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
-//							.orElseThrow(() -> new RuntimeException("Error: Role admin1 is not found."));
-//					roles.add(adminRole);
-//
-//					break;
-//
-//				default:
-//					Role userRole = roleRepository.findByName(ERole.ROLE_ADMIN)
-//							.orElseThrow(() -> new RuntimeException("Error: Role admin2  is not found."));
-//					roles.add(userRole);
-//				}
-//			});
-//		}
-//
-//		user.setRoles(roles);
-		// System.out.println(user);
-		// System.out.println(userRepository.save(user));
-		
-		/**
-		 * User's vehicle by default
-		 */
 		Vehicle vehicle = new Vehicle(null, 0L, null);
 		Energy energy = energyService.getOneEnergy(1L).get();
 		
@@ -138,8 +100,19 @@ public class AuthController {
 		userRepository.save(user);
 		vehicleService.addVehiculeByUser(vehicle, TypeVehicle.voiture, energy, user);
 		
-		
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 	}
-
+	
+	
+	@GetMapping("/connected")
+    public boolean isjwtValid(@RequestHeader(value="Authorization",required=false) String token) throws GeneralSecurityException {
+        if(token.startsWith("Bearer ")) {
+            String tokenCut =token.substring(7,token.length());
+            Boolean respToken = jwtUtils.validateJwtToken(tokenCut);
+            return respToken;
+                }
+        
+        return false;
+        
+    }
 }
