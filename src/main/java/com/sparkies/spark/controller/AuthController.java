@@ -106,7 +106,7 @@ public class AuthController {
 	
 	@GetMapping("/connected")
     public boolean isjwtValid(@RequestHeader(value="Authorization",required=false) String token) throws GeneralSecurityException {
-        if(token.startsWith("Bearer ")) {
+        if(token!=null && token.startsWith("Bearer ")) {
             String tokenCut =token.substring(7,token.length());
             Boolean respToken = jwtUtils.validateJwtToken(tokenCut);
             return respToken;
